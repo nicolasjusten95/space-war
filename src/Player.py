@@ -1,7 +1,4 @@
-import random
-
-from src.Constants import PLAYER_ROTATION_ANGLE, PLAYER_ACCELERATION, MIN_PLACEMENT_BORDER, MAX_PLACEMENT_BORDER, \
-    MIN_HEADING_ANGLE, MAX_HEADING_ANGLE, PLAYER_HIT_ACCELERATION_MULTIPLIER, INITIAL_PLAYER_SPEED
+from src.Constants import PLAYER_ROTATION_ANGLE, PLAYER_ACCELERATION, INITIAL_PLAYER_SPEED
 from src.Sprite import Sprite
 
 
@@ -23,11 +20,3 @@ class Player(Sprite):
 
     def decelerate(self):
         self.speed -= PLAYER_ACCELERATION
-
-    def hyperspace(self):
-        self.play_sound("media/hyperspace.mp3")
-        x = random.randint(MIN_PLACEMENT_BORDER, MAX_PLACEMENT_BORDER)
-        y = random.randint(MIN_PLACEMENT_BORDER, MAX_PLACEMENT_BORDER)
-        self.goto(x, y)
-        self.setheading(random.randint(MIN_HEADING_ANGLE, MAX_HEADING_ANGLE))
-        self.speed *= PLAYER_HIT_ACCELERATION_MULTIPLIER

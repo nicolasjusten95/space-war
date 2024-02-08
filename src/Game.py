@@ -39,3 +39,4 @@ class GameState(Enum):
     PLAYING = 2
     RESTART = 3
     GAME_OVER = 4
+    LEVEL_UP = 5

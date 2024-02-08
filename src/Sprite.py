@@ -1,12 +1,5 @@
-import os
-import platform
 import random
 import turtle
-
-try:
-    import winsound
-except:
-    pass
 
 from src.Constants import MAX_MOVEMENT_BORDER, MIN_MOVEMENT_BORDER, SPRITE_DEFAULT_ROTATION_ANGLE, SPRITE_HIT_BOX
 
@@ -51,11 +44,3 @@ class Sprite(turtle.Turtle):
                 (self.ycor() <= (other.ycor() + SPRITE_HIT_BOX)):
             return True
         return False
-
-    def play_sound(self, sound_file):
-        if platform.system() == 'Windows':
-            winsound.PlaySound(sound_file, winsound.SND_ASYNC)
-        elif platform.system() == "Linux":
-            os.system("aplay -q {}&".format(sound_file))
-        else:
-            os.system("afplay {}&".format(sound_file))

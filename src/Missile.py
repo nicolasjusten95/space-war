@@ -22,7 +22,6 @@ class Missile(Sprite):
             self.goto(-1000, 1000)
 
         if self.status == MissileState.SHOOT:
-            self.play_sound("media/laser.mp3")
             self.goto(player.xcor(), player.ycor())
             self.setheading(player.heading())
             self.showturtle()
