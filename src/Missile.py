@@ -1,4 +1,6 @@
-from src.Constants import MIN_GAME_BORDER, MAX_GAME_BORDER
+from enum import Enum
+
+from src.Constants import MIN_MOVEMENT_BORDER, MAX_MOVEMENT_BORDER, MISSILE_SPEED
 from src.Sprite import Sprite
 
 
@@ -6,25 +8,35 @@ class Missile(Sprite):
 
     def __init__(self, sprite_shape, color, start_x, start_y):
         Sprite.__init__(self, sprite_shape, color, start_x, start_y)
-        self.shapesize(stretch_wid=0.3, stretch_len=0.4, outline=None)
-        self.speed = 20
-        self.status = "ready"  # todo: define enum
-        self.move_off_screen()
+        self.shapesize(stretch_wid=0.2, stretch_len=0.4, outline=None)
+        self.speed = MISSILE_SPEED
+        self.status = MissileState.READY
 
-    def fire(self, player):
-        if self.status == "ready":
+    def fire(self):
+        if self.status == MissileState.READY:
+            self.status = MissileState.SHOOT
+
+    def move_missile(self, player):
+        if self.status == MissileState.READY:
+            self.hideturtle()
+            self.goto(-1000, 1000)
+
+        if self.status == MissileState.SHOOT:
+            self.play_sound("media/laser.mp3")
             self.goto(player.xcor(), player.ycor())
             self.setheading(player.heading())
-            self.status = "firing"
+            self.showturtle()
+            self.status = MissileState.FIRING
 
-    def move(self):
-        if self.status == "ready":
-            self.move_off_screen()
-        if self.status == "firing":
+        if self.status == MissileState.FIRING:
             self.fd(self.speed)
-        if self.xcor() < MIN_GAME_BORDER or self.xcor() > MAX_GAME_BORDER or self.ycor() < MIN_GAME_BORDER or self.ycor() > MAX_GAME_BORDER:
-            self.move_off_screen()
-            self.status = "ready"
 
-    def move_off_screen(self):
-        self.goto(-1000, 1000)
+        if self.xcor() < MIN_MOVEMENT_BORDER or self.xcor() > MAX_MOVEMENT_BORDER \
+                or self.ycor() < MIN_MOVEMENT_BORDER or self.ycor() > MAX_MOVEMENT_BORDER:
+            self.status = MissileState.READY
+
+
+class MissileState(Enum):
+    READY = 1
+    SHOOT = 2
+    FIRING = 3

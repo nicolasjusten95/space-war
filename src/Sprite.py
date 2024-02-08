@@ -1,6 +1,14 @@
+import os
+import platform
+import random
 import turtle
 
-from src.Constants import MAX_GAME_BORDER, MIN_GAME_BORDER
+try:
+    import winsound
+except:
+    pass
+
+from src.Constants import MAX_MOVEMENT_BORDER, MIN_MOVEMENT_BORDER, SPRITE_DEFAULT_ROTATION_ANGLE, SPRITE_HIT_BOX
 
 
 class Sprite(turtle.Turtle):
@@ -12,31 +20,42 @@ class Sprite(turtle.Turtle):
         self.color(color)
         self.fd(0)
         self.goto(start_x, start_y)
-        self.speed = 1
+        self.speed = 0
 
     def move(self):
         self.fd(self.speed)
 
-        if self.xcor() > MAX_GAME_BORDER:
-            self.setx(MAX_GAME_BORDER)
-            self.rt(60)
+        if self.xcor() > MAX_MOVEMENT_BORDER:
+            self.setx(MAX_MOVEMENT_BORDER)
+            self.rt(SPRITE_DEFAULT_ROTATION_ANGLE)
 
-        if self.xcor() < MIN_GAME_BORDER:
-            self.setx(MIN_GAME_BORDER)
-            self.rt(60)
+        if self.xcor() < MIN_MOVEMENT_BORDER:
+            self.setx(MIN_MOVEMENT_BORDER)
+            self.rt(SPRITE_DEFAULT_ROTATION_ANGLE)
 
-        if self.ycor() > MAX_GAME_BORDER:
-            self.sety(MAX_GAME_BORDER)
-            self.rt(60)
+        if self.ycor() > MAX_MOVEMENT_BORDER:
+            self.sety(MAX_MOVEMENT_BORDER)
+            self.rt(SPRITE_DEFAULT_ROTATION_ANGLE)
 
-        if self.ycor() < MIN_GAME_BORDER:
-            self.sety(MIN_GAME_BORDER)
-            self.rt(60)
+        if self.ycor() < MIN_MOVEMENT_BORDER:
+            self.sety(MIN_MOVEMENT_BORDER)
+            self.rt(SPRITE_DEFAULT_ROTATION_ANGLE)
+
+    def reset_to_random_position(self):
+        self.goto(random.randint(-200, 200), random.randint(-200, 200))
 
     def is_collision(self, other):
-        if (self.xcor() >= (other.xcor() - 20)) and \
-                (self.xcor() <= (other.xcor() + 20)) and \
-                (self.ycor() >= (other.ycor() - 20)) and \
-                (self.ycor() <= (other.ycor() + 20)):
+        if (self.xcor() >= (other.xcor() - SPRITE_HIT_BOX)) and \
+                (self.xcor() <= (other.xcor() + SPRITE_HIT_BOX)) and \
+                (self.ycor() >= (other.ycor() - SPRITE_HIT_BOX)) and \
+                (self.ycor() <= (other.ycor() + SPRITE_HIT_BOX)):
             return True
         return False
+
+    def play_sound(self, sound_file):
+        if platform.system() == 'Windows':
+            winsound.PlaySound(sound_file, winsound.SND_ASYNC)
+        elif platform.system() == "Linux":
+            os.system("aplay -q {}&".format(sound_file))
+        else:
+            os.system("afplay {}&".format(sound_file))

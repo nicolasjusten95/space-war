@@ -1,4 +1,5 @@
 import turtle
+from enum import Enum
 
 
 class Game:
@@ -6,8 +7,8 @@ class Game:
     def __init__(self):
         self.level = 1
         self.score = 0
+        self.state = GameState.SPLASH
         self.lives = 3
-        self.state = "playing" # todo: define enum
         self.pen = turtle.Turtle()
 
     def draw_border(self):
@@ -21,4 +22,20 @@ class Game:
             self.pen.fd(600)
             self.pen.rt(90)
         self.pen.penup()
-        self.pen.ht()
+
+    def show_status(self):
+        self.pen.undo()
+        if self.lives > 0:
+            msg = "Level: %s Lives: %s Score: %s" % (self.level, self.lives, self.score)
+        else:
+            msg = "Game Over! Score: %s" % self.score
+        self.pen.penup()
+        self.pen.goto(-300, 300)
+        self.pen.write(msg, font=("Arial", 16, "normal"))
+
+
+class GameState(Enum):
+    SPLASH = 1
+    PLAYING = 2
+    RESTART = 3
+    GAME_OVER = 4
