@@ -1,5 +1,7 @@
 import turtle
 
+from src.Constants import MAX_GAME_BORDER, MIN_GAME_BORDER
+
 
 class Sprite(turtle.Turtle):
 
@@ -15,20 +17,20 @@ class Sprite(turtle.Turtle):
     def move(self):
         self.fd(self.speed)
 
-        if self.xcor() > 290:
-            self.setx(290)
+        if self.xcor() > MAX_GAME_BORDER:
+            self.setx(MAX_GAME_BORDER)
             self.rt(60)
 
-        if self.xcor() < -290:
-            self.setx(-290)
+        if self.xcor() < MIN_GAME_BORDER:
+            self.setx(MIN_GAME_BORDER)
             self.rt(60)
 
-        if self.ycor() > 290:
-            self.sety(290)
+        if self.ycor() > MAX_GAME_BORDER:
+            self.sety(MAX_GAME_BORDER)
             self.rt(60)
 
-        if self.ycor() < -290:
-            self.sety(-290)
+        if self.ycor() < MIN_GAME_BORDER:
+            self.sety(MIN_GAME_BORDER)
             self.rt(60)
 
     def is_collision(self, other):

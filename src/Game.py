@@ -7,7 +7,7 @@ class Game:
         self.level = 1
         self.score = 0
         self.lives = 3
-        self.state = "playing"
+        self.state = "playing" # todo: define enum
         self.pen = turtle.Turtle()
 
     def draw_border(self):
