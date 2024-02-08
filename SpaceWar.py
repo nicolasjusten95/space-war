@@ -15,7 +15,7 @@ from src.Player import Player
 turtle.fd(0)
 turtle.speed(0)
 turtle.bgcolor("black")
-turtle.bgpic("media/starfield.gif")
+turtle.bgpic("src/media/starfield.gif")
 turtle.title("Space War")
 turtle.ht()
 turtle.setundobuffer(1)
@@ -63,7 +63,7 @@ if game.state == GameState.SPLASH:
 
 
 def on_collision(other):
-    other.play_sound("media/explosion.mp3")
+    other.play_sound("src/media/explosion.mp3")
     player.color("red")
     for particle in particles:
         particle.explode(other.xcor(), other.ycor())
@@ -78,7 +78,7 @@ def on_collision(other):
 
 
 def on_missile_collision(other):
-    other.play_sound("media/explosion.mp3")
+    other.play_sound("src/media/explosion.mp3")
     for particle in particles:
         particle.explode(other.xcor(), other.ycor())
     missile.status = MissileState.READY
