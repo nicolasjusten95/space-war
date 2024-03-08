@@ -3,13 +3,13 @@ import time
 import turtle
 from tkinter import messagebox
 
-from src.Ally import Ally
-from src.Constants import INITIAL_PLAYER_SPEED
-from src.Enemy import Enemy
-from src.Game import Game, GameState
-from src.Missile import Missile, MissileState
-from src.Particle import Particle
-from src.Player import Player
+from src.ally import Ally
+from src.constants import INITIAL_PLAYER_SPEED
+from src.enemy import Enemy
+from src.game import Game, GameState
+from src.missile import Missile, MissileState
+from src.particle import Particle
+from src.player import Player
 
 # Configure turtle
 turtle.fd(0)
@@ -99,6 +99,7 @@ while True:
         for ally in allies:
             ally.speed = random.randint(1, game.level)
 
+        game.show_status()
         game.state = GameState.PLAYING
 
     if game.state == GameState.PLAYING:
@@ -109,10 +110,11 @@ while True:
             enemy.move()
             if player.is_collision(enemy):
                 on_collision(enemy)
+                game.show_status()
             if missile.is_collision(enemy):
                 on_missile_collision(enemy)
-                game.show_status()
                 game.score += 100
+                game.show_status()
                 print("Score: %s" % game.score)
                 if game.score == (game.level * 200):
                     game.state = GameState.LEVEL_UP
@@ -124,6 +126,7 @@ while True:
             ally.avoid(player)
             if player.is_collision(ally):
                 on_collision(ally)
+                game.show_status()
             if missile.is_collision(ally):
                 on_missile_collision(ally)
                 game.score -= 100

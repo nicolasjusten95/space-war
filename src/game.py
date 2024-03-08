@@ -25,10 +25,11 @@ class Game:
 
     def show_status(self):
         self.pen.undo()
+        self.pen.ht()
         if self.lives > 0:
             msg = "Level: %s Lives: %s Score: %s" % (self.level, self.lives, self.score)
         else:
-            msg = "Game Over! Score: %s" % self.score
+            msg = "Game Over! Level: %s Score: %s" % (self.level, self.score)
         self.pen.penup()
         self.pen.goto(-300, 300)
         self.pen.write(msg, font=("Arial", 16, "normal"))

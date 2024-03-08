@@ -1,8 +1,8 @@
 import random
 
-from src.Constants import MAX_MOVEMENT_BORDER, MIN_MOVEMENT_BORDER, MIN_HEADING_ANGLE, MAX_HEADING_ANGLE, ALLY_SPEED, \
+from src.constants import MAX_MOVEMENT_BORDER, MIN_MOVEMENT_BORDER, MIN_HEADING_ANGLE, MAX_HEADING_ANGLE, ALLY_SPEED, \
     ALLY_ROTATION_ANGLE, ALLY_AVOID_BOX
-from src.Sprite import Sprite
+from src.sprite import Sprite
 
 
 class Ally(Sprite):

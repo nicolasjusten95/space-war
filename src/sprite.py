@@ -1,7 +1,7 @@
 import random
 import turtle
 
-from src.Constants import MAX_MOVEMENT_BORDER, MIN_MOVEMENT_BORDER, SPRITE_DEFAULT_ROTATION_ANGLE, SPRITE_HIT_BOX
+from src.constants import MAX_MOVEMENT_BORDER, MIN_MOVEMENT_BORDER, SPRITE_DEFAULT_ROTATION_ANGLE, SPRITE_HIT_BOX
 
 
 class Sprite(turtle.Turtle):

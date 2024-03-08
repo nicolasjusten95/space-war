@@ -1,7 +1,7 @@
 from enum import Enum
 
-from src.Constants import MIN_MOVEMENT_BORDER, MAX_MOVEMENT_BORDER, MISSILE_SPEED
-from src.Sprite import Sprite
+from src.constants import MIN_MOVEMENT_BORDER, MAX_MOVEMENT_BORDER, MISSILE_SPEED
+from src.sprite import Sprite
 
 
 class Missile(Sprite):

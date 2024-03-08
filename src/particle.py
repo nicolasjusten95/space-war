@@ -1,7 +1,7 @@
 import random
 import turtle
 
-from src.Sprite import Sprite
+from src.sprite import Sprite
 
 
 class Particle(Sprite):

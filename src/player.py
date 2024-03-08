@@ -1,5 +1,5 @@
-from src.Constants import PLAYER_ROTATION_ANGLE, PLAYER_ACCELERATION, INITIAL_PLAYER_SPEED
-from src.Sprite import Sprite
+from src.constants import PLAYER_ROTATION_ANGLE, PLAYER_ACCELERATION, INITIAL_PLAYER_SPEED
+from src.sprite import Sprite
 
 
 class Player(Sprite):

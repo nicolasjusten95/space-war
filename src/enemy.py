@@ -1,7 +1,7 @@
 import random
 
-from src.Constants import ENEMY_SPEED, MIN_HEADING_ANGLE, MAX_HEADING_ANGLE, ENEMY_ROTATION_ANGLE
-from src.Sprite import Sprite
+from src.constants import ENEMY_SPEED, MIN_HEADING_ANGLE, MAX_HEADING_ANGLE, ENEMY_ROTATION_ANGLE
+from src.sprite import Sprite
 
 
 class Enemy(Sprite):
